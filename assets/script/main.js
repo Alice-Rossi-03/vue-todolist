@@ -17,9 +17,19 @@ const { createApp } = Vue
 createApp({
     data(){ 
         return{
+            newTask: null, 
             taskList: [
                 {
-
+                    task: "Do The Chores",
+                    done: true
+                },
+                {
+                    task: "Do The Laundry",
+                    done: false
+                },
+                {
+                    task: "Do The Dishes",
+                    done: true
                 }
             ]
         }
@@ -29,14 +39,19 @@ createApp({
     },
     methods:{
         addTask(){ // we add the task to the list 
-            if(this.newTask !== ""){
-                this.taskList.unshift(this.newTask)
+            if(this.newTask.length !== ""){
+                this.taskList.unshift({
+                    task: this.newTask, 
+                    done: false // still to do task 
+                })
             }
-
             this.newTask = "" // we clear the input
         },
         removeTask(index){
             this.taskList.splice(index, 1)
+        },
+        check(index){
+            this.taskList[index].done = !this.taskList[index].done
         }
-    },
+    }, 
 }).mount("#app") 
