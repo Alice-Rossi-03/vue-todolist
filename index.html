@@ -25,10 +25,10 @@
             <div class="row align-items-end">
                 <div class="col-9">
                     <label for="new-task" class="form-label">Write A New Task:</label>
-                    <input id="new-task" type="text" class="form-control">
+                    <input id="new-task" type="text" class="form-control" v-model="newTask">
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary fw-bold"> ADD TASK </button>
+                    <button @click="addTask" @keyup.enter="addTask" class="btn btn-primary fw-bold"> ADD TASK </button>
                 </div>
             </div>
 
@@ -39,21 +39,22 @@
         <div class="w-50 mx-auto">
             <h3 class="text-primary my-3 fw-bolder">Tasks:</h3>
 
-            <div class="bg-body-secondary rounded p-3">
-                <div class="border-bottom d-flex justify-content-between pt-1 align-content-center">
-                    <ol>
-                        <li>
-                            
+            <div class="bg-body-secondary rounded pt-3 pe-4 pb-3" v-if="taskList.length !== 0 ">
+                <div class="pt-1 align-content-center">
+                    <ul>
+                        <li class="border-bottom d-flex justify-content-between pb-2 mb-2" v-for="(task, index) in taskList" :key="index">
+                            <div> {{task}} </div>
+                             <svg @click="removeTask(index)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="fill: #fff; width: 1.5em; height: 1.5em;">
+                                <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
+                            </svg>
                         </li>
-                    </ol>
+                    </ul>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="fill: #fff; width: 1.5em; height: 1.5em;">
-                        <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
-                    </svg>
+                    
                 </div>
             </div>
 
-            <div class="bg-body-secondary rounded p-3 fw-bold text-primary-emphasis">
+            <div v-else class="bg-body-secondary rounded p-3 fw-bold text-primary-emphasis">
                 <span>There are no task for today!</span>
             </div>
 
