@@ -12,12 +12,58 @@
 
 // BONUS - oltre al click sul pulsante, intercettare anche il tasto ENTER per aggiungere il todo alla lista
 
+// const { createApp } = Vue  
+
+// createApp({
+//     data(){ 
+//         return{
+//             newTask: null, 
+//             // control: false,
+//             taskList: [
+//                 {
+//                     task: "Do The Chores",
+//                     done: true
+//                 },
+//                 {
+//                     task: "Do The Laundry",
+//                     done: false
+//                 },
+//                 {
+//                     task: "Do The Dishes",
+//                     done: true
+//                 }
+//             ]
+//         }
+//     },
+//     created(){
+
+//     },
+//     methods:{
+//         addTask(){ // we add the task to the list 
+//             if(this.newTask.length !== 0){
+//                 this.taskList.unshift({
+//                     task: this.newTask, 
+//                     done: false // still to do task 
+//                 })
+//             }
+//             this.newTask = "" // we clear the input
+//         },
+//         removeTask(index){
+//             this.taskList.splice(index, 1)
+//         },
+//         check(index){
+//             this.taskList[index].done = !this.taskList[index].done
+//         }
+//     }, 
+// }).mount("#app") 
+
 const { createApp } = Vue  
 
 createApp({
     data(){ 
         return{
             newTask: null, 
+            control: false,
             taskList: [
                 {
                     task: "Do The Chores",
@@ -39,10 +85,10 @@ createApp({
     },
     methods:{
         addTask(){ // we add the task to the list 
-            if(this.newTask.length !== ""){
+            if(this.newTask.length !== 0){
                 this.taskList.unshift({
                     task: this.newTask, 
-                    done: false // still to do task 
+                    done: control // still to do task 
                 })
             }
             this.newTask = "" // we clear the input
@@ -51,7 +97,7 @@ createApp({
             this.taskList.splice(index, 1)
         },
         check(index){
-            this.taskList[index].done = !this.taskList[index].done
+            this.control = true 
         }
     }, 
 }).mount("#app") 

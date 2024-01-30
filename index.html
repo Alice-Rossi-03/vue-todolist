@@ -44,7 +44,7 @@
                 <div class="pt-1 align-content-center">
                     <ul>
                         <li @click="check(index)" class="border-bottom d-flex justify-content-between pb-2 mb-2" v-for="(element, index) in taskList" :key="index">
-                            <div class="text-capitalize" v-bind:class=" { 'strikethrough' : element.done } "> {{element.task}} </div>
+                            <div class="text-capitalize" v-bind:class=" control ? 'strikethrough' : '' "> {{element.task}} </div>
                             <svg @click="removeTask(index)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="fill: #fff; width: 1.5em; height: 1.5em;">
                                 <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
                             </svg>
